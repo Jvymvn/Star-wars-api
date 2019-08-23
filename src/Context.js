@@ -3,23 +3,37 @@ import React, { Component } from 'react'
 const Context = React.createContext();
 
 export class Provider extends Component {
-    state = {
-        characters: [],
-        heading: 'Star Wars Characters'
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            characters: [],
+            heading: 'Star Wars Characters',
+            searchTerm: '',
+            onChange: this.onChange.bind(this),
+            onSubmit: this.onSubmit.bind(this),
+        }
+    }
 
     componentDidMount() {
-        // `https://swapi.co/api/people/?search=`
         const searchUrl = `https://swapi.co/api/people/`;
 
         fetch(`${searchUrl}`)
             .then(res => res.json())
             .then(data => {
-                // console.log(data.results);
                 this.setState({ characters: data.results })
             })
-        // .then(res => res.json())
-        // .then(data => this.setState({ characters: [data] }))
+    }
+
+    onChange(e) {
+        this.setState({ [e.target.name]: e.target.value })
+    }
+
+    onSubmit(e) {
+        e.preventDefault()
+        const searchUrl = `https://swapi.co/api/people/?search=`;
+        fetch(`${searchUrl}${this.state.searchTerm}`)
+            .then(res => res.json())
+            .then(data => this.setState({ characters: data.results }))
     }
 
     render() {

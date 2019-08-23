@@ -13,6 +13,7 @@ class App extends React.Component {
         <Router>
           <React.Fragment>
             <Navbar />
+            <SearchForm />
             <div className='container'>
               <Switch>
                 <Route exact path="/" component={Index} />
