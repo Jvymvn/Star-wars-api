@@ -12,7 +12,6 @@ class App extends React.Component {
       <Provider>
         <Router>
           <React.Fragment>
-            <Navbar />
             <SearchForm />
             <div className='container'>
               <Switch>

@@ -9,14 +9,12 @@ export default class SearchForm extends Component {
                 {value => {
                     const { onSubmit, onChange } = value;
                     return (
-                        <div>
+                        <div className="search-form">
                             <h1>Search Characters</h1>
                             <form onSubmit={onSubmit}>
                                 <label>Character Name: </label><br />
                                 <input type='text' name='searchTerm' onChange={onChange} />
-                                <button type='submit'>
-                                    Search
-                    </button>
+                                <button type='submit'>Search</button>
                             </form>
                             <hr />
                         </div>
